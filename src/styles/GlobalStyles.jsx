@@ -12,6 +12,13 @@ const GlobalStyles = createGlobalStyle`
         background-color: ${({ theme }) => theme.colors.background};
         height: 100vh;
     }
+    a {
+        all: unset;
+    }
+
+    li {
+        list-style: none;
+    }
 `;
 
 export default GlobalStyles;
