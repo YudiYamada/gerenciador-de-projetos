@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerStyle = styled.div`
+export const MainContainer = styled.div`
   width: ${({ width }) => width || "1200px"};
   display: flex;
   justify-content: ${({ justify }) => justify || "space-between"};
