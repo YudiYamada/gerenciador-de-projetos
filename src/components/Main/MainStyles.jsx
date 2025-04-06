@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  width: ${({ width }) => width || "1200px"};
+  width: 1200px;
   display: flex;
   justify-content: ${({ justify }) => justify || "space-between"};
   margin: ${({ margin }) => margin || "0 auto"};

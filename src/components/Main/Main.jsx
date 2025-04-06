@@ -1,9 +1,8 @@
 import { MainContainer } from "./MainStyles";
 
-function Main({ children, width, justify, margin, wrap, direction, minHeight }) {
+function Main({ children, justify, margin, wrap, direction, minHeight }) {
   return (
     <MainContainer
-      width={width}
       justify={justify}
       margin={margin}
       wrap={wrap}
