@@ -5,7 +5,7 @@ import LinkButton from "../../components/LinkButton/LinkButton";
 
 function Home() {
   return (
-    <Main width="1200px" justify="space-between" direction="column">
+    <Main justify="space-between" direction="column">
       <HomeContainer>
         <h1>
           Bem-vindo ao <span>Costs</span>
