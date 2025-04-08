@@ -26,21 +26,3 @@ export const createPost = async (project) => {
     throw error;
   }
 };
-
-// function createPost(project) {
-//   project.cost = 0;
-//   project.services = [];
-
-//   fetch("http://localhost:5000/projects", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(project),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => console.log(data))
-//     .catch((error) => console.error("Erro:", error));
-// }
-
-// export default createPost;
