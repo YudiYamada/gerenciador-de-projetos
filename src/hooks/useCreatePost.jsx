@@ -17,7 +17,7 @@ export const useCreatePost = () => {
       const data = await createPost(project);
       setProjectData(data);
       navigate("/projetos", {
-        state: { message: "Projeto criado com sucesso" },
+        state: { message: "Projeto criado com sucesso!" },
       });
     } catch (err) {
       setError(err.message);
