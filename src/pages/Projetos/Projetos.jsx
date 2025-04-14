@@ -10,7 +10,14 @@ import Loading from "../../components/Loading/Loading";
 function Projetos() {
   const location = useLocation();
   const message = location.state?.message || "";
-  const { projects, loading, error } = useProjects();
+  const {
+    projects,
+    loading,
+    error,
+    successMessage,
+    setSuccessMessage,
+    deleteProject,
+  } = useProjects();
 
   return (
     <ProjectContainer>
@@ -18,8 +25,12 @@ function Projetos() {
         <h1>Meus Projetos</h1>
         <LinkButton to="/novoprojeto" text="Criar Projeto" />
       </TitleContainer>
+
       {message && <Message msg={message} type="success" />}
-      {error && <p>Erro ao carregar projetos: {error}</p>}
+      {successMessage && <Message msg={successMessage} type="success" />}
+
+      {error && <Message msg={error} type="error" />}
+
       <Container justify="start">
         {loading ? (
           <Loading />
@@ -30,10 +41,14 @@ function Projetos() {
               name={project.name}
               budget={project.budget}
               category={project.category?.name || "Categoria desconhecida"}
+              handleRemove={() => {
+                deleteProject(project.id);
+                setSuccessMessage("Projeto removido com sucesso!");
+              }}
             />
           ))
         ) : (
-          !loading && !error && <p>Não há projetos cadastrados!</p>
+          <p>Não há projetos cadastrados!</p>
         )}
       </Container>
     </ProjectContainer>

@@ -7,7 +7,7 @@ import {
 } from "./ProjectCardStyles";
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 
-function ProjectCard({ /*id,*/ name, budget, category /*handleRemove*/ }) {
+function ProjectCard({ /*id,*/ name, budget, category, handleRemove }) {
   return (
     <Container>
       <h4>{name}</h4>
@@ -21,7 +21,7 @@ function ProjectCard({ /*id,*/ name, budget, category /*handleRemove*/ }) {
         <LinkStyled to="/">
           <BsPencil /> Editar
         </LinkStyled>
-        <Button>
+        <Button onClick={handleRemove}>
           <BsFillTrashFill /> Excluir
         </Button>
       </Actions>
