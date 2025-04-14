@@ -10,6 +10,46 @@
       },
       "cost": 0,
       "services": []
+    },
+    {
+      "id": "7f0b",
+      "name": "Projeto de Teste 2",
+      "budget": "10.00",
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "4bdd",
+      "name": "Projeto de Test 3",
+      "budget": "999.99",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "d5e1",
+      "name": "Projeto de Test 4",
+      "budget": "142.24",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "2bb3",
+      "category": {
+        "id": "2",
+        "name": "Desenvolvimento"
+      },
+      "name": "Projeto de Test 5",
+      "budget": "93574.85",
+      "cost": 0,
+      "services": []
     }
   ],
   "categories": [
