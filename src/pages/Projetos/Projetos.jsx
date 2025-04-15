@@ -38,6 +38,7 @@ function Projetos() {
           projects.map((project) => (
             <ProjectCard
               key={project.id}
+              id={project.id}
               name={project.name}
               budget={project.budget}
               category={project.category?.name || "Categoria desconhecida"}
