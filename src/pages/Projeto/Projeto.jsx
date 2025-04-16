@@ -1,24 +1,116 @@
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import useProject from "../../hooks/useProject";
-import {} from "./ProjetoStyles";
+import Loading from "../../components/Loading/Loading";
+import Message from "../../components/Message/Message";
+import {
+  ProjectsDetails,
+  ProjectsDetailsContainer,
+  Button,
+  ProjectInfo,
+} from "./ProjetoStyles";
+import ProjetoForm from "../../components/Projeto/ProjetoForm";
 
 function Projeto() {
-    const { id } = useParams();
-    const { project, loading, error } = useProject(id);
-  
-    if (loading) return <p>Carregando...</p>;
-    if (error) return <p>{error}</p>;
-    if (!project) return <p>Projeto não encontrado.</p>;
-  
-    return (
-      <>
-        <p>{project.id}</p>
-        <p>{project.name}</p>
-        <p>{project.budget}</p>
-        <p>{project.category?.name || "Categoria desconhecida"}</p>
-      </>
-    );
+  const { id } = useParams();
+  const { project, setProject, loading } = useProject(id);
+  const [showProject, setShowProject] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [message, setMessage] = useState("");
+  const [type, setType] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowProject(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [id]);
+
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage("");
+        setType("");
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
+  function editPost(project) {
+    if (project.budget < project.cost) {
+      setMessage("O orçamento não pode ser menor que o custo do projeto!");
+      setType("error");
+      return;
+    }
+
+    fetch(`http://localhost:5000/projects/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(project),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Erro ao atualizar o projeto.");
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        setIsEditing(false);
+        setProject(data);
+        setMessage("Projeto atualizado com sucesso!");
+        setType("success");
+      })
+      .catch((err) => {
+        setMessage(
+          err.message || "Erro ao atualizar o projeto. Tente novamente."
+        );
+        setType("error");
+      });
   }
-  
-  export default Projeto;
-  
+
+  function toggleProjectForm() {
+    setIsEditing((prev) => !prev);
+  }
+
+  return (
+    <ProjectsDetails>
+      {loading || !showProject ? <Loading /> : null}
+      {message && <Message msg={message} type={type} />}
+      {project && showProject && (
+        <ProjectsDetailsContainer>
+          <h1>{project.name}</h1>
+          <Button onClick={toggleProjectForm}>
+            {isEditing ? "Fechar Edição" : "Editar Projeto"}
+          </Button>
+
+          {!isEditing ? (
+            <ProjectInfo>
+              <p>
+                <span>Categoria:</span>{" "}
+                {project.category?.name || "Categoria desconhecida"}
+              </p>
+              <p>
+                <span>Total de Orçamento</span> R${project.budget}
+              </p>
+              <p>
+                <span>Total Utilizado</span> R${project.cost}
+              </p>
+            </ProjectInfo>
+          ) : (
+            <ProjetoForm
+              handleSubmit={editPost}
+              btnText="Concluir edição"
+              initialProjectData={project}
+            />
+          )}
+        </ProjectsDetailsContainer>
+      )}
+    </ProjectsDetails>
+  );
+}
+
+export default Projeto;

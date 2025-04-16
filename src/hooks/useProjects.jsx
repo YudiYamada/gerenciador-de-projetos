@@ -21,7 +21,7 @@ function useProjects() {
         } finally {
           setLoading(false);
         }
-      }, 1500);
+      }, 1000);
     }
 
     loadProjects();

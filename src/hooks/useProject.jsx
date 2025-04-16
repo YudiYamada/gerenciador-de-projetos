@@ -20,7 +20,7 @@ const useProject = (id) => {
     getProject();
   }, [id]);
 
-  return { project, loading, error };
+  return { project, setProject, loading, error };
 };
 
 export default useProject;
