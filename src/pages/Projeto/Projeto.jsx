@@ -8,6 +8,7 @@ import {
   ProjectsDetailsContainer,
   Button,
   ProjectInfo,
+  ServiceFormContainer,
 } from "./ProjetoStyles";
 import ProjetoForm from "../../components/Projeto/ProjetoForm";
 
@@ -15,6 +16,7 @@ function Projeto() {
   const { id } = useParams();
   const { project, setProject, loading } = useProject(id);
   const [showProject, setShowProject] = useState(false);
+  const [showServiceForm, setShowServiceForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState("");
   const [type, setType] = useState("");
@@ -76,9 +78,13 @@ function Projeto() {
     setIsEditing((prev) => !prev);
   }
 
+  function toggleServiceForm() {
+    setShowServiceForm((prev) => !prev);
+  }
+
   return (
     <ProjectsDetails>
-      {loading || !showProject ? <Loading /> : null}
+      {loading || (!showProject && <Loading />)}
       {message && <Message msg={message} type={type} />}
       {project && showProject && (
         <ProjectsDetailsContainer>
@@ -109,6 +115,19 @@ function Projeto() {
           )}
         </ProjectsDetailsContainer>
       )}
+      <ServiceFormContainer>
+        <h2>Adicione um Serviço</h2>
+        <Button onClick={toggleServiceForm}>
+          {!showServiceForm ? "Adicionar serviço" : "Fechar"}
+        </Button>
+        <ProjectInfo>
+          {showServiceForm && <div>Formulário do serviço</div>}
+        </ProjectInfo>
+      </ServiceFormContainer>
+      <h2>Serviços</h2>
+      <ServiceFormContainer>
+        <p>Itens de serviço</p>
+      </ServiceFormContainer>
     </ProjectsDetails>
   );
 }
