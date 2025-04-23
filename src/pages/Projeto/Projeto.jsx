@@ -10,7 +10,7 @@ import {
   ProjectInfo,
   ServiceFormContainer,
 } from "./ProjetoStyles";
-import ProjetoForm from "../../components/Projeto/ProjetoForm";
+import ProjetoForm from "../../components/ProjetoForm/ProjetoForm";
 
 function Projeto() {
   const { id } = useParams();
@@ -121,7 +121,9 @@ function Projeto() {
           {!showServiceForm ? "Adicionar serviço" : "Fechar"}
         </Button>
         <ProjectInfo>
-          {showServiceForm && <div>Formulário do serviço</div>}
+          {showServiceForm && (
+            <ServiceForm />
+          )}
         </ProjectInfo>
       </ServiceFormContainer>
       <h2>Serviços</h2>

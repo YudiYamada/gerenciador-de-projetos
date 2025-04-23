@@ -1,4 +1,4 @@
-import ProjetoForm from "../../components/Projeto/ProjetoForm";
+import ProjetoForm from "../../components/ProjetoForm/ProjetoForm";
 import { Container } from "./NovoProjetoStyles";
 import { useCreatePost } from "../../hooks/useCreatePost";
 

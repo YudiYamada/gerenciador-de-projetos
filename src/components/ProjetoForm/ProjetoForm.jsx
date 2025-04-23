@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Input from "../Form/Inputs/Input";
-import Select from "../Form/Selects/Select";
-import SubmitButton from "../Form/SubmitButton/SubmitButton";
+import Input from "../Inputs/Input";
+import Select from "../Selects/Select";
+import SubmitButton from "../SubmitButton/SubmitButton";
 import { Form } from "./ProjetoFormStyles";
 import useCategories from "../../hooks/useCategories";
 

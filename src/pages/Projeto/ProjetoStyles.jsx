@@ -39,6 +39,10 @@ export const ServiceFormContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const Button = styled.button`
