@@ -13,10 +13,12 @@ import {
 } from "./ProjetoStyles";
 import ProjetoForm from "../../components/ProjetoForm/ProjetoForm";
 import ServiceForm from "../../components/ServiceForm/ServiceForm";
+import ServiceCard from "../../components/ServiceCard/ServiceCard";
 
 function Projeto() {
   const { id } = useParams();
-  const { project, setProject, loading } = useProject(id);
+  const { project, setProject, services, setServices, loading, error } =
+    useProject(id);
   const [showProject, setShowProject] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -42,8 +44,8 @@ function Projeto() {
     }
   }, [message]);
 
-  function editPost(project) {
-    if (project.budget < project.cost) {
+  function editPost(updatedProject) {
+    if (updatedProject.budget < updatedProject.cost) {
       setMessage("O orçamento não pode ser menor que o custo do projeto!");
       setType("error");
       return;
@@ -54,7 +56,7 @@ function Projeto() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(project),
+      body: JSON.stringify(updatedProject),
     })
       .then((resp) => {
         if (!resp.ok) {
@@ -65,6 +67,7 @@ function Projeto() {
       .then((data) => {
         setIsEditing(false);
         setProject(data);
+        setServices(data.services || []);
         setMessage("Projeto atualizado com sucesso!");
         setType("success");
       })
@@ -76,34 +79,63 @@ function Projeto() {
       });
   }
 
-  function createService(project) {
-    const lastService = project.services[project.services.length - 1];
+  function createService(updatedProject) {
+    const lastService = {
+      ...updatedProject.services[updatedProject.services.length - 1],
+    };
     lastService.id = uuidv4();
 
-    const lastServiceCost = lastService.cost;
-    const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost);
+    const lastServiceCost = parseFloat(lastService.cost);
+    const newCost = parseFloat(updatedProject.cost) + lastServiceCost;
 
-    if (newCost > parseFloat(project.budget)) {
+    if (newCost > parseFloat(updatedProject.budget)) {
       setMessage("Orçamento ultrapassado, verifique o valor do serviço");
       setType("error");
-      project.services.pop();
+      updatedProject.services = updatedProject.services.slice(0, -1);
       return false;
     }
 
-    project.cost = newCost;
+    updatedProject.cost = newCost;
+
     fetch(`http://localhost:5000/projects/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(project),
+      body: JSON.stringify(updatedProject),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        setServices([...data.services]);
+        setMessage("Serviço adicionado com sucesso!");
+        setType("success");
       })
       .catch((err) => {
-        setMessage(err.message || "Erro");
+        setMessage(err.message || "Erro ao adicionar serviço.");
+        setType("error");
+      });
+  }
+
+  function removeService(serviceId) {
+    const updatedServices = services.filter(
+      (service) => service.id !== serviceId
+    );
+
+    fetch(`http://localhost:5000/projects/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...project, services: updatedServices }),
+    })
+      .then((resp) => resp.json())
+      .then(() => {
+        setServices(updatedServices);
+        setMessage("Serviço removido com sucesso!");
+        setType("success");
+      })
+      .catch((err) => {
+        setMessage(err.message || "Erro ao remover serviço.");
         setType("error");
       });
   }
@@ -118,7 +150,8 @@ function Projeto() {
 
   return (
     <ProjectsDetails>
-      {loading || (!showProject && <Loading />)}
+      {loading && <Loading />}
+      {error && <Message msg={error} type="error" />}
       {message && <Message msg={message} type={type} />}
       {project && showProject && (
         <ProjectsDetailsContainer>
@@ -134,10 +167,10 @@ function Projeto() {
                 {project.category?.name || "Categoria desconhecida"}
               </p>
               <p>
-                <span>Total de Orçamento</span> R${project.budget}
+                <span>Total de Orçamento:</span> R${project.budget}
               </p>
               <p>
-                <span>Total Utilizado</span> R${project.cost}
+                <span>Total Utilizado:</span> R${project.cost}
               </p>
             </ProjectInfo>
           ) : (
@@ -154,19 +187,30 @@ function Projeto() {
         <Button onClick={toggleServiceForm}>
           {!showServiceForm ? "Adicionar serviço" : "Fechar"}
         </Button>
-        <ProjectInfo>
-          {showServiceForm && (
-            <ServiceForm
-              handleSubmit={createService}
-              btnText="Adicionar Serviço"
-              projectData={project}
-            />
-          )}
-        </ProjectInfo>
+        {showServiceForm && (
+          <ServiceForm
+            handleSubmit={createService}
+            btnText="Adicionar Serviço"
+            projectData={project}
+          />
+        )}
       </ServiceFormContainer>
       <h2>Serviços</h2>
       <ServiceFormContainer>
-        <p>Itens de serviço</p>
+        {services.length > 0 ? (
+          services.map((service) => (
+            <ServiceCard
+              id={service.id}
+              name={service.name}
+              cost={service.cost}
+              description={service.description}
+              key={service.id}
+              handleRemove={() => removeService(service.id)}
+            />
+          ))
+        ) : (
+          <p>Não há serviços cadastrados.</p>
+        )}
       </ServiceFormContainer>
     </ProjectsDetails>
   );

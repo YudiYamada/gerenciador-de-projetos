@@ -3,6 +3,7 @@ import fetchProject from "../api/fetchProject";
 
 const useProject = (id) => {
   const [project, setProject] = useState(null);
+  const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -11,6 +12,7 @@ const useProject = (id) => {
       const data = await fetchProject(id);
       if (data) {
         setProject(data);
+        setServices(data.services || []);
       } else {
         setError("Não foi possível carregar o projeto.");
       }
@@ -20,7 +22,7 @@ const useProject = (id) => {
     getProject();
   }, [id]);
 
-  return { project, setProject, loading, error };
+  return { project, setProject, services, setServices, loading, error };
 };
 
 export default useProject;

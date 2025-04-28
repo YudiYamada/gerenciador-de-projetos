@@ -8,8 +8,15 @@
         "id": "4",
         "name": "Planejamento"
       },
-      "cost": 0,
-      "services": []
+      "cost": 300,
+      "services": [
+        {
+          "name": "Novo Plano",
+          "cost": "300.00",
+          "description": "Novo plano para o projeto",
+          "id": "10a5ba4a-fe56-4de4-978a-fd62a4900e7b"
+        }
+      ]
     },
     {
       "id": "7f0b",
