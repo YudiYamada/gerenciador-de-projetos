@@ -1,48 +1,101 @@
-# Gerenciador de Projetos
+# 📖 Gerenciador de Projetos
 
 ## 📌 Sobre o Projeto
-Este é um aplicativo de gerenciamento de projetos desenvolvido com **React** e **Styled Components**, permitindo que usuários criem, editem e gerenciem projetos e serviços dentro de um orçamento.
-
-## 🚀 Tecnologias Utilizadas
-- **React** (v19.0.0)
-- **React Router Dom** (v7.4.1)
-- **Styled Components** (v6.1.17)
-- **UUID** (v11.1.0)
-- **Json-Server** para simular um backend (v1.0.0-beta.3)
-- **Vite** para build e preview (v6.2.0)
+O **Gerenciador de Projetos** é um sistema de gerenciamento de projetos desenvolvido com **React**, utilizando **Styled Components** para um design moderno e responsivo. Ele permite que usuários criem, editem e gerenciem projetos, adicionando serviços dentro de um orçamento.
 
 ## [Vizualize o projeto clicando aqui](https://yudiyamada.github.io/gerenciador-de-projetos/)
 
-## ⚙️ Instalação e Configuração
-1. **Clone o repositório**:
-   ```bash
-   git clone https://github.com/YudiYamada/gerenciador-de-projetos.git
-   ```
+## 🚀 Tecnologias Utilizadas
+### Frontend:
+- **React** (v19.0.0) - Biblioteca para construção da interface interativa
+- **React Router Dom** (v7.4.1) - Gerenciamento de rotas e navegação
+- **Styled Components** (v6.1.17) - Estilização baseada em componentes
+- **UUID** (v11.1.0) - Geração de identificadores únicos
 
-2. **Instale as dependências**:
-   ```bash
-   npm install
-   ```
+### Backend:
+- **Json-Server** (v1.0.0-beta.3) - Simulação de API REST para armazenamento de dados
 
-3. **Inicie o servidor JSON**:
-   ```bash
-   npm run backend
-   ```
+### Ferramentas de Build:
+- **Vite** (v6.2.0) - Ferramenta moderna de desenvolvimento e empacotamento
 
-4. **Execute o projeto em modo desenvolvimento**:
-   ```bash
-   npm run dev
-   ```
+---
 
-## 📌 Funcionalidades
-- Criar e editar projetos dentro de um orçamento definido
-- Adicionar serviços a projetos
-- Visualizar e remover serviços existentes
-- Feedback com mensagens dinâmicas
-- Design responsivo e moderno
+## 📂 Estrutura do Projeto
+```plaintext
+a-base-do-react/
+│── public/
+│── src/
+│   ├── api/              # Funções para interação com a API fake (JSON Server)
+│   ├── assets/           # Imagens e outros arquivos estáticos
+│   ├── components/       # Componentes reutilizáveis
+│   ├── hooks/            # Hooks personalizados para gerenciar estado e lógica
+│   ├── Layout/           # Componente de layout geral da aplicação
+│   ├── pages/            # Páginas principais do aplicativo
+│   ├── routes/           # Configuração das rotas da aplicação
+│   ├── styles/           # Estilos globais e temas personalizados
+│   ├── App.jsx           # Componente principal da aplicação
+│   ├── main.jsx          # Ponto de entrada da aplicação
+│── .gitignore            # Arquivos ignorados pelo Git
+│── db.json               # Banco de dados simulado (JSON Server)
+│── eslint.config.js      # Configuração do ESLint
+│── index.html            # Estrutura HTML do projeto
+│── package.json          # Dependências e scripts
+│── package-lock.json     # Controle de versão das dependências
+│── README.md             # Documentação do projeto
+│── vite.config.js        # Configuração do Vite
+```
 
-## 🛠️ Estilos Globais
-O projeto utiliza **Styled Components** para gerenciar os estilos, facilitando a manutenção e criação de componentes estilizados. As configurações de cores estão centralizadas no arquivo `theme.jsx`.
+---
 
-## 🏗️ Estrutura de Rotas
-As rotas são gerenciadas pelo `React Router Dom` e estão definidas no arquivo `AppRoutes.jsx`, garantindo uma navegação fluida entre as páginas.
+## ⚙️ Instalação e Execução
+
+### 1️⃣ Clone o Repositório
+```bash
+git clone https://github.com/YudiYamada/gerenciador-de-projetos.git
+cd gerenciador-de-projetos
+```
+
+### 2️⃣ Instale as Dependências
+```bash
+npm install
+```
+
+### 3️⃣ Inicie o Servidor Backend (JSON Server)
+```bash
+npm run backend
+```
+
+### 4️⃣ Inicie a Aplicação em Modo Desenvolvimento
+```bash
+npm run dev
+```
+
+---
+
+## 🛠️ Funcionalidades Principais
+✅ **Gerenciamento de Projetos:** Criar, editar e excluir projetos com orçamento definido  
+✅ **Adição de Serviços:** Associar serviços aos projetos  
+✅ **Feedback Visual:** Mensagens dinâmicas de sucesso e erro  
+✅ **Design Responsivo:** Interface moderna com Styled Components  
+✅ **Simulação de Backend:** Armazenamento de dados no JSON Server  
+
+---
+
+## 🎨 Estilos e Tema
+O projeto utiliza **Styled Components**, e todas as configurações de cores estão organizadas no arquivo `theme.jsx`. Além disso, os estilos globais são gerenciados pelo `GlobalStyles.jsx`.
+
+---
+
+## 📌 Estrutura de Rotas
+A aplicação usa `React Router Dom` para navegação eficiente, com as seguintes rotas:
+- `/` → Página inicial
+- `/contato` → Contato
+- `/empresa` → Sobre a empresa
+- `/projetos` → Lista de projetos cadastrados
+- `/novoprojeto` → Criar um novo projeto
+- `/projeto/:id` → Detalhes de um projeto específico
+
+---
+
+## 📄 Licença
+Este projeto é de código aberto e pode ser usado conforme desejado.
