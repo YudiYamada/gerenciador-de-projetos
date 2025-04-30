@@ -8,7 +8,7 @@
         "id": "4",
         "name": "Planejamento"
       },
-      "cost": 300,
+      "cost": null,
       "services": [
         {
           "name": "Novo Plano",

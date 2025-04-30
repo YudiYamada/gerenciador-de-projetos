@@ -24,23 +24,23 @@ export const ProjectsDetails = styled.div`
 `;
 
 export const ProjectsDetailsContainer = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.quartenary};
   margin-bottom: 1.2em;
   padding-bottom: 1.2em;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.quartenary};
 `;
 
 export const ServiceFormContainer = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.quartenary};
   margin-bottom: 1.2em;
   padding-bottom: 1.2em;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.quartenary};
 
-  &:last-child {
+  &:last-child{
     border-bottom: none;
   }
 `;
