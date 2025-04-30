@@ -16,7 +16,10 @@ const useProject = (id) => {
       } else {
         setError("Não foi possível carregar o projeto.");
       }
-      setLoading(false);
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     };
 
     getProject();
