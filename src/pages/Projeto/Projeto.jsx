@@ -1,4 +1,4 @@
-import { parse, v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useProject from "../../hooks/useProject";
@@ -116,21 +116,26 @@ function Projeto() {
       });
   }
 
-  function removeService(serviceId) {
-    const updatedServices = services.filter(
-      (service) => service.id !== serviceId
+  function removeService(id, cost) {
+    const servicesUpdated = project.services.filter(
+      (service) => service.id !== id
     );
 
-    fetch(`http://localhost:5000/projects/${id}`, {
+    const projectUpdated = project;
+    projectUpdated.services = servicesUpdated;
+    projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
+
+    fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...project, services: updatedServices }),
+      body: JSON.stringify(projectUpdated),
     })
       .then((resp) => resp.json())
       .then(() => {
-        setServices(updatedServices);
+        setProject(projectUpdated);
+        setServices(servicesUpdated);
         setMessage("Serviço removido com sucesso!");
         setType("success");
       })
@@ -188,11 +193,13 @@ function Projeto() {
           {!showServiceForm ? "Adicionar serviço" : "Fechar"}
         </Button>
         {showServiceForm && (
-          <ServiceForm
-            handleSubmit={createService}
-            btnText="Adicionar Serviço"
-            projectData={project}
-          />
+          <ProjectInfo>
+            <ServiceForm
+              handleSubmit={createService}
+              btnText="Adicionar Serviço"
+              projectData={project}
+            />
+          </ProjectInfo>
         )}
       </ServiceFormContainer>
       <h2>Serviços</h2>
