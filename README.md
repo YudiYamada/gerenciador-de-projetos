@@ -1,112 +1,48 @@
 # Gerenciador de Projetos
 
-Bem-vindo ao **Gerenciador de Projetos**, uma aplicação desenvolvida em **React** com **Styled Components** e **React Router**, que permite criar e gerenciar projetos de forma eficiente.
+## 📌 Sobre o Projeto
+Este é um aplicativo de gerenciamento de projetos desenvolvido com **React** e **Styled Components**, permitindo que usuários criem, editem e gerenciem projetos e serviços dentro de um orçamento.
+
+## 🚀 Tecnologias Utilizadas
+- **React** (v19.0.0)
+- **React Router Dom** (v7.4.1)
+- **Styled Components** (v6.1.17)
+- **UUID** (v11.1.0)
+- **Json-Server** para simular um backend (v1.0.0-beta.3)
+- **Vite** para build e preview (v6.2.0)
 
 ## [Vizualize o projeto clicando aqui](https://yudiyamada.github.io/gerenciador-de-projetos/)
 
-## 🚀 Tecnologias Utilizadas
+## ⚙️ Instalação e Configuração
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/YudiYamada/gerenciador-de-projetos.git
+   ```
 
-Este projeto foi construído utilizando as seguintes tecnologias:
+2. **Instale as dependências**:
+   ```bash
+   npm install
+   ```
 
-- ⚛️ **React** 19
-- 🎨 **Styled Components** para estilização
-- 🔄 **React Router** para navegação
-- 📦 **Json-Server** como backend simulado
-- ✅ **ESLint** para padronização de código
+3. **Inicie o servidor JSON**:
+   ```bash
+   npm run backend
+   ```
 
-## 📂 Estrutura de Diretórios
+4. **Execute o projeto em modo desenvolvimento**:
+   ```bash
+   npm run dev
+   ```
 
-A estrutura do projeto foi organizada para melhor modularização e escalabilidade:
+## 📌 Funcionalidades
+- Criar e editar projetos dentro de um orçamento definido
+- Adicionar serviços a projetos
+- Visualizar e remover serviços existentes
+- Feedback com mensagens dinâmicas
+- Design responsivo e moderno
 
-```
-src/
-├── api/             # Chamadas de API simuladas
-├── assets/          # Arquivos estáticos (imagens, ícones)
-├── components/      # Componentes reutilizáveis
-│   ├── Container/
-│   ├── Footer/
-│   ├── Form/
-│   ├── Header/
-│   ├── LinkButton/
-│   ├── Message/
-│   ├── NavBar/
-│   ├── Projeto/
-├── hooks/           # Hooks personalizados
-├── layouts/         # Estrutura de layout
-│   ├── MainLayout.jsx
-│   ├── AdminLayout.jsx (caso tenha um painel administrativo futuramente)
-├── pages/           # Páginas principais
-│   ├── Home/
-│   │   ├── Home.jsx
-│   │   ├── HomeStyles.jsx
-│   ├── Empresa/
-│   │   ├── Empresa.jsx
-│   │   ├── EmpresaStyles.jsx
-│   ├── Contato/
-│   │   ├── Contato.jsx
-│   │   ├── ContatoStyles.jsx
-│   ├── Projetos/
-│   │   ├── Projetos.jsx
-│   │   ├── ProjetosStyles.jsx
-│   ├── NovoProjeto/
-│   │   ├── NovoProjeto.jsx
-│   │   ├── NovoProjetoStyles.jsx
-├── routes/          # Configuração de rotas
-│   ├── PublicRoutes.jsx
-│   ├── PrivateRoutes.jsx
-│   ├── AppRoutes.jsx
-├── styles/          # Estilos globais e tema
-│   ├── GlobalStyles.jsx
-│   ├── theme.jsx
-│   ├── mixins.js (se necessário)
-└── main.jsx         # Arquivo de entrada
-```
+## 🛠️ Estilos Globais
+O projeto utiliza **Styled Components** para gerenciar os estilos, facilitando a manutenção e criação de componentes estilizados. As configurações de cores estão centralizadas no arquivo `theme.jsx`.
 
-## 🎯 Funcionalidades
-
-- Criar novos projetos com nome, orçamento e categoria.
-- Armazenamento temporário utilizando **Json-Server**.
-- Navegação intuitiva com um menu responsivo.
-- Feedback visual ao criar projetos com sucesso.
-
-## 🛠️ Como Rodar o Projeto
-
-Siga os passos abaixo para rodar o projeto localmente:
-
-### 1️⃣ Clone o repositório
-
-```sh
-git clone https://github.com/YudiYamada/gerenciador-de-projetos.git
-```
-
-### 2️⃣ Instale as dependências
-
-```sh
-npm install
-```
-
-### 3️⃣ Inicie o servidor JSON
-
-```sh
-npm run backend
-```
-
-### 4️⃣ Rode o ambiente de desenvolvimento
-
-```sh
-npm run dev
-```
-
-Agora você pode acessar o projeto em **http://localhost:5173** 🚀
-
-## 💡 Melhorias Futuras
-
-Aqui estão algumas futuras melhorias:
-
-- 💾 Persistência real dos dados com um backend.
-- 📊 Dashboard de estatísticas dos projetos criados.
-- 🔒 Autenticação de usuários.
-
-## 📜 Licença
-
-Este projeto está licenciado sob a **MIT License**.
+## 🏗️ Estrutura de Rotas
+As rotas são gerenciadas pelo `React Router Dom` e estão definidas no arquivo `AppRoutes.jsx`, garantindo uma navegação fluida entre as páginas.
