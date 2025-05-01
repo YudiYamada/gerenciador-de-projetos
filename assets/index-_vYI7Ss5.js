@@ -156,7 +156,7 @@ Please change the parent <Route path="${Y}"> to <Route path="${Y==="/"?"*":`${Y}
   max-width: 1200px;
   margin: 0 auto;
   overflow: auto;
-`;function sb(){return O.jsxs(fb,{children:[O.jsx(ab,{}),O.jsx(ob,{children:O.jsx(eg,{})}),O.jsx(rb,{})]})}const db="/gerenciador-de-projetos/assets/savings-TFfZUgRR.svg",hb=ht.section`
+`;function sb(){return O.jsxs(fb,{children:[O.jsx(ab,{}),O.jsx(ob,{children:O.jsx(eg,{})}),O.jsx(rb,{})]})}const db="/assets/savings-TFfZUgRR.svg",hb=ht.section`
   width: 100%;
   display: flex;
   flex-direction: column;
