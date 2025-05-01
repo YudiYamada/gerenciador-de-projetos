@@ -1,5 +1,4 @@
 {
-  "homepage": "https://YudiYamada.github.io/gerenciador-de-projetos",
   "name": "gerenciador-de-projetos",
   "private": true,
   "version": "0.0.0",
@@ -9,9 +8,7 @@
     "backend": "json-server --watch db.json --port 5000",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "json-server": "^1.0.0-beta.3",
