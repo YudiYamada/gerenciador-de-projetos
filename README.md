@@ -17,7 +17,7 @@ O **Gerenciador de Projetos** é um sistema de gerenciamento de projetos desenvo
 ## 🚀 Tecnologias Utilizadas
 ### Frontend:
 - **React** (v19.0.0) - Biblioteca para construção da interface interativa
-- **React Router Dom** (v7.4.1) - Gerenciamento de rotas e navegação
+- **React Router Dom** (v19.0.0) - Gerenciamento de rotas e navegação
 - **Styled Components** (v6.1.17) - Estilização baseada em componentes
 - **UUID** (v11.1.0) - Geração de identificadores únicos
 
