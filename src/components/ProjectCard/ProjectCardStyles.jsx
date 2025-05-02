@@ -12,7 +12,7 @@ export const Container = styled.div`
   padding: 1em;
   border: 1px solid ${({ theme }) => theme.colors.quaternary};
   border-radius: 5px;
-  width: 280px;
+  width: 270px;
   margin: 0.5%;
   flex-wrap: wrap;
 

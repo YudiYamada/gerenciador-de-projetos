@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useProject from "../../hooks/useProject";
 import useProjectActions from "../../hooks/useProjectActions";
 import Loading from "../../components/Loading/Loading";
@@ -10,16 +10,34 @@ import ServiceSection from "../../components/ServiceSection/ServiceSection";
 
 function Projeto() {
   const { id } = useParams();
-  const { project, setProject, services, setServices, loading, error } = useProject(id);
+  const { project, setProject, services, setServices, loading, error } =
+    useProject(id);
   const [isEditing, setIsEditing] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState("");
   const [type, setType] = useState("");
 
-  const { editPost, createService, removeService } = useProjectActions(project, setProject, setServices, setMessage, setType);
+  const { editPost, createService, removeService } = useProjectActions(
+    project,
+    setProject,
+    setServices,
+    setMessage,
+    setType
+  );
+
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage("");
+        setType("");
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   if (loading) {
-    return <Loading />; 
+    return <Loading />;
   }
 
   return (
@@ -29,8 +47,20 @@ function Projeto() {
 
       {project && (
         <>
-          <ProjectDetails project={project} isEditing={isEditing} toggleEdit={() => setIsEditing(!isEditing)} editPost={editPost} />
-          <ServiceSection services={services} project={project} showServiceForm={showServiceForm} toggleServiceForm={() => setShowServiceForm(!showServiceForm)} createService={createService} removeService={removeService} />
+          <ProjectDetails
+            project={project}
+            isEditing={isEditing}
+            toggleEdit={() => setIsEditing(!isEditing)}
+            editPost={editPost}
+          />
+          <ServiceSection
+            services={services}
+            project={project}
+            showServiceForm={showServiceForm}
+            toggleServiceForm={() => setShowServiceForm(!showServiceForm)}
+            createService={createService}
+            removeService={removeService}
+          />
         </>
       )}
     </ProjectsDetails>
