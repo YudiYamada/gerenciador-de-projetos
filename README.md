@@ -3,6 +3,15 @@
 ## 📌 Sobre o Projeto
 O **Gerenciador de Projetos** é um sistema de gerenciamento de projetos desenvolvido com **React**, utilizando **Styled Components** para um design moderno e responsivo. Ele permite que usuários criem, editem e gerenciem projetos, adicionando serviços dentro de um orçamento.
 
+## 📸 Capturas de Tela
+
+### 🖥️ Versão Desktop
+![Project Desktop](src/assets/img/project_final_desktop.png)
+
+### 📱 Versão Mobile
+![Project Mobile](src/assets/img/project_final_mobile.png)
+
+
 ## [Vizualize o projeto clicando aqui](https://yudiyamada.github.io/gerenciador-de-projetos/)
 
 ## 🚀 Tecnologias Utilizadas
