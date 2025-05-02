@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../pages/Home/Home";
 import Projetos from "../pages/Projetos/Projetos";
@@ -9,18 +9,16 @@ import Projeto from "../pages/Projeto/Projeto";
 
 function AppRoutes() {
   return (
-    <Router basename="/gerenciador-de-projetos">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/contato" element={<Contato />} />
-          <Route path="/empresa" element={<Empresa />} />
-          <Route path="/projetos" element={<Projetos />} />
-          <Route path="/novoprojeto" element={<NovoProjeto />} />
-          <Route path="/projeto/:id" element={<Projeto />} />
-        </Route>
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/contato" element={<Contato />} />
+        <Route path="/empresa" element={<Empresa />} />
+        <Route path="/projetos" element={<Projetos />} />
+        <Route path="/novoprojeto" element={<NovoProjeto />} />
+        <Route path="/projeto/:id" element={<Projeto />} />
+      </Route>
+    </Routes>
   );
 }
 
