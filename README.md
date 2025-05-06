@@ -6,10 +6,10 @@ O **Gerenciador de Projetos** é um sistema de gerenciamento de projetos desenvo
 ## 📸 Capturas de Tela
 
 ### 🖥️ Versão Desktop
-![Project Desktop](src\assets\img\project_final_desktop.png)
+![Project Desktop](src/assets/img/project_final_desktop.png)
 
 ### 📱 Versão Mobile
-![Project Mobile](src\assets\img\project_final_mobile.png)
+![Project Mobile](src/assets/img/project_final_mobile.png)
 
 
 ## [Vizualize o projeto clicando aqui](https://yudiyamada.github.io/gerenciador-de-projetos/)
